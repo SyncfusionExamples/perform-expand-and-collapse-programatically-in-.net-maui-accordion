@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AccordionMaui.ViewModel"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Accordion;assembly=Syncfusion.Maui.Expander"
+             x:Class="AccordionMaui.MainPage">
+    <ContentPage.BindingContext>
+        <local:ItemInfoRepository/>
+    </ContentPage.BindingContext>
+    <syncfusion:SfAccordion x:Name="Accordion" ExpandMode="MultipleOrNone" BindableLayout.ItemsSource="{Binding Info}">
+        <BindableLayout.ItemTemplate>
+            <DataTemplate>
+                <syncfusion:AccordionItem IsExpanded="{Binding IsExpand}">
+                    <syncfusion:AccordionItem.Header>
+                        <Grid HeightRequest="60">
+                            <Label Text="{Binding Name}" FontSize="Medium"/>
+                        </Grid>
+                    </syncfusion:AccordionItem.Header>
+                    <syncfusion:AccordionItem.Content>
+                        <Grid>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Text="{Binding Description}"/>
+                                <Button x:Name="btn" Grid.Row="1" Text="{Binding Name}" Command="{Binding Path=BindingContext.ExpandCollapse, Source={x:Reference Accordion}}" CommandParameter="{x:Reference btn}"/>
+                            </Grid>
+                        </Grid>
+                    </syncfusion:AccordionItem.Content>
+                </syncfusion:AccordionItem>
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
+    </syncfusion:SfAccordion>
+</ContentPage>
