@@ -1,12 +1,14 @@
 # perform-expand-and-collapse-programatically-in-.net-maui-accordion
 This example demonstrates about how to perform expand and collapse functionality through programatically in .NET MAUI Accordion (SfAccordion).
+
 How to expand or collapse Accordion programmatically in Maui(SfAccordion)
 
 You can programmatically expand or collapse the AccordionItem in Maui SfAccordion by binding the model property to AccordionItem.IsExpanded property.
  
 XAML
+
 IsExpanded model property is bound to IsExpanded property of AccordionItem to expand or collapse when update property value programmatically.
- 
+``` xml 
 <DataTemplate>
     <syncfusion:AccordionItem IsExpanded="{Binding IsExpand}">
         <syncfusion:AccordionItem.Header>
@@ -18,7 +20,7 @@ IsExpanded model property is bound to IsExpanded property of AccordionItem to ex
             <Grid>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
                     <Label Text="{Binding Description}"/>
@@ -28,10 +30,12 @@ IsExpanded model property is bound to IsExpanded property of AccordionItem to ex
         </syncfusion:AccordionItem.Content>
     </syncfusion:AccordionItem>
 </DataTemplate>
- 
+```
 C#
+
 OnExpandCollapse is used to change the IsExpand property to expand or collapse the item.
  
+``` csharp
 public class ItemInfoRepository
 {
     public Command<object> ExpandCollapse{ get; set; }
@@ -47,3 +51,4 @@ public class ItemInfoRepository
         item.IsExpand = !item.IsExpand;
     }
 }
+```
